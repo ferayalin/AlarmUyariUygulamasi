@@ -5,6 +5,7 @@ package com.ferayalin.sinavdorduncusoru;
  */
 
 import android.app.AlarmManager;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -19,7 +20,6 @@ import java.util.Calendar;
 
 
 public class NotificationPublisher extends BroadcastReceiver {
-    final int MIN = 60 * 1000;
     String adi,tipi;
 
     @Override
@@ -34,17 +34,12 @@ public class NotificationPublisher extends BroadcastReceiver {
         adi = intent.getExtras().getString("adi");
         tipi = intent.getExtras().getString("tipi");
 
-        //Wakelock'u bırak.
-        wl.release();
-
         if (tipi.equals("Toast")) {
-
             Toast.makeText(context, adi, Toast.LENGTH_LONG).show();
         }
         else if (tipi.equals("Titreşim")) {
-
-           Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-            vibrator.vibrate(500);
+            Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+            vibrator.vibrate(2500);
         }
         else if (tipi.equals("Notification")) {
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
@@ -61,15 +56,24 @@ public class NotificationPublisher extends BroadcastReceiver {
                 notificationBuilder.setContentIntent(pendingIntent);
             }
 
-
             NotificationManager notificationManager =
                     (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                NotificationChannel channel = new NotificationChannel("default",
+                        "MY_ALARM_MANAGER",
+                        NotificationManager.IMPORTANCE_DEFAULT);
+                channel.setDescription("MY_ALARM_MANAGER_DESCRIPTION");
+                notificationManager.createNotificationChannel(channel);
+            }
 
             notificationManager.notify(0, notificationBuilder.build());
         }
 
+        //Wakelock'u bırak.
+        wl.release();
 
-}
+    }
 
     public void alarmKur(Context context, Alarm alarm) {
         Calendar c = Calendar.getInstance();
@@ -92,9 +96,8 @@ public class NotificationPublisher extends BroadcastReceiver {
         intent.putExtra("adi", alarm.getAdi());
 
         PendingIntent alarmIntent = PendingIntent.getBroadcast(context,
-                0, intent,
+                (int)System.currentTimeMillis(), intent,
                 0);
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), tekrarSuresi, alarmIntent);
-
     }
 }
