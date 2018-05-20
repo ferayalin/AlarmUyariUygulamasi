@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "900959081512",
+    "firebase_url": "https://sinavdorduncusoru.firebaseio.com",
+    "project_id": "sinavdorduncusoru",
+    "storage_bucket": "sinavdorduncusoru.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900959081512:android:49c2f4fbe7f88737",
+        "android_client_info": {
+          "package_name": "com.ferayalin.sinavdorduncusoru"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900959081512-aua8g89n3teenf0lbo951q0543agcqq6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ferayalin.sinavdorduncusoru",
+            "certificate_hash": "261f0492fb7cae0e03858028644de115c3a381f6"
+          }
+        },
+        {
+          "client_id": "900959081512-vfc2nf4fdadfm5b2f3nt5pdqiphhrhrb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXkc7ViVKDvlttWbzsMA2_M-4cHWojO_Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900959081512-vfc2nf4fdadfm5b2f3nt5pdqiphhrhrb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

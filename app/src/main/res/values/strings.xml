@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SinavDorduncuSoru</string>
+    <string name="title_activity_alarm_listem">AlarmListem</string>
+    <string name="title_activity_alarm_listesi">AlarmListesi</string>
+</resources>
